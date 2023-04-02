@@ -90,9 +90,9 @@ After seeding database, you can login using default user:
 
 ## Contact
 
-Ahmed Sobhy - contact@ahmedsobhy.net
+Khalid Aboubakr - khalid.aboubakr@outlook.com
 
-Project Link: [https://www.github.com/AhmedSobhy01/rental-payments-management-system](https://www.github.com/AhmedSobhy01/rental-payments-management-system)
+Project Link: [https://github.com/khalidAboubakr/RentManagement](Click here)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
