@@ -12,6 +12,8 @@ class EditBuilding extends Component
     public $building_id;
     public $address = [];
     public $number;
+    public $name;
+    public $buildingtype;
 
     protected $listeners = [
         'openEditBuildingModal' => 'openModal',
@@ -30,6 +32,8 @@ class EditBuilding extends Component
         $this->address['en'] = $building->getTranslation('address', 'en');
         $this->address['ar'] = $building->getTranslation('address', 'ar');
         $this->number = $building->number;
+        $this->name = $building->name;
+        $this->buildingtype = $building->buildingtype;
 
         $this->open = true;
     }
@@ -38,7 +42,7 @@ class EditBuilding extends Component
     {
         $this->open = false;
         $this->resetValidation();
-        $this->reset(["address", "number", "building_id",]);
+        $this->reset(["address", "number", "building_id","buildingtype","name"]);
     }
 
     public function updateBuilding()
@@ -47,6 +51,8 @@ class EditBuilding extends Component
             "address.en" => "required|max:255|string",
             "address.*" => "nullable|max:255|string",
             "number" => "required|string",
+            "name" => "required|string",
+            "buildingtype" => "required|min:1|integer",
         ]);
 
         $building = Building::findOrFail($this->building_id);
@@ -57,6 +63,8 @@ class EditBuilding extends Component
                 'ar' => $this->address['ar'] ?? $this->address['en'],
             ],
             "number" => $this->number,
+            "name" => $this->name,
+            "buildingtype" => $this->buildingtype,
         ]);
 
         $this->emit("success", __('messages.building_updated'));

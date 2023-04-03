@@ -75,6 +75,8 @@ return [
     "Contract Information" => "Contract Information",
     "English Address" => "English Address",
     "Arabic Address" => "Arabic Address",
+    "Building Name" => "Building Name",
+    "BuildingType" => "Building Type",
     "Login" => "Login",
     "Welcome" => "Welcome",
     "Please choose a tenant" => "Please choose a tenant",

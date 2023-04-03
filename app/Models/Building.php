@@ -15,6 +15,9 @@ class Building extends Model
     protected $fillable = [
         'address',
         'number',
+        'name',
+        'buildingtype',
+        'image',
     ];
 
     public $translatable = ['address'];

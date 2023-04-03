@@ -16,6 +16,8 @@ class Apartment extends Model
         'building_id',
         'floor',
         'number',
+        'image',
+        'appartmenttype',
     ];
 
     protected $with = ['building'];

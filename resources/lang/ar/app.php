@@ -75,6 +75,8 @@ return [
     "Contract Information" => "تفاصيل العقد",
     "English Address" => "العنوان باللغة الإنجليزية",
     "Arabic Address" => "العنوان باللغة العربية",
+    "Building Name" => "اسم المبني",
+    "BuildingType" => "نوع المنشأة",
     "Login" => "تسجيل الدخول",
     "Welcome" => "أهلا وسهلا",
     "Please choose a tenant" => "يرجى اختيار المستأجر",

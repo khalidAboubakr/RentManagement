@@ -1,3 +1,4 @@
+
 <div>
 
     <div class="text-4xl font-bold text-center dark:text-white">{{ __('app.Buildings') }} ({{ $buildings->total() }})</div>
@@ -24,58 +25,93 @@
             </div>
         @endif
 
-        <div class="overflow-x-auto">
-            <table class="min-w-max w-full table-auto overflow-hidden">
-                <thead>
-                    <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                        <th class="py-3 px-6 text-center">{{ __('app.ID') }}</th>
-                        <th class="py-3 px-6 text-center">{{ __('app.Address') }}</th>
-                        <th class="py-3 px-6 text-center">{{ __('app.Building Number') }}</th>
-                        <th class="py-3 px-6 text-center">{{ __('app.Floors') }}</th>
-                        <th class="py-3 px-6 text-center">{{ __('app.Apartments On Floor') }}</th>
-                        <th class="py-3 px-6 text-center">{{ __('app.Total Apartments') }}</th>
-                        <th class="py-3 px-6 text-center">{{ __('app.Has Basement') }}</th>
-                        <th class="py-3 px-6 text-center">{{ __('app.Created At') }}</th>
-                        <th class="py-3 px-6 text-center">{{ __('app.Actions') }}</th>
-                    </tr>
-                </thead>
-                <tbody class="text-gray-600 text-sm font-light">
+        <div class="container mx-auto">
+        <div class="flex flex-wrap -mx-4">
+
                     @forelse ($buildings as $building)
-                        <tr class="border-b border-gray-200 hover:bg-gray-100">
-                            <td class="py-3 px-6 text-center">{{ $building->id }}</td>
-                            <td class="py-3 px-6 text-center">{{ $building->address }}</td>
-                            <td class="py-3 px-6 text-center">{{ $building->number }}</td>
-                            <td class="py-3 px-6 text-center">{{ $building->apartments_max_floor }}</td>
-                            <td class="py-3 px-6 text-center">{{ $building->apartments_count / $building->apartments_max_floor }}</td>
-                            <td class="py-3 px-6 text-center">{{ $building->apartments_count }}</td>
-                            <td class="py-3 px-6 text-center">
-                                @if ($building->apartments->where('floor', 0)->count())
-                                    <i class="fas fa-check fa-lg text-green-600"></i>
-                                @else
-                                    <i class="fas fa-times fa-lg text-red-600"></i>
+                     
+<div class="w-full sm:w-1/2 md:w-1/2 xl:w-1/4 p-4">
+    <a href="#">
+        <img class="p-8 rounded-t-lg" src="/{{$building->image}}" alt="صورة المبني" />
+    </a>
+    <div class="px-5 pb-5">
+        <a href="#">
+            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{{ $building->name }}</h5>
+        </a>
+
+       
+
+        <ul role="list" class="space-y-5 my-7">
+        <li class="flex space-x-3">
+               
+            </li>
+            <li class="flex space-x-3">
+                <!-- Icon -->
+                <span class="text-base font-bold leading-bold text-gray-500 dark:text-gray-400">{{ __('app.ID') }} :</span>
+                <span class="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">{{ $building->id }}</span>
+            </li>
+            <li class="flex space-x-3">
+                <!-- Icon -->
+                <span class="text-base font-bold leading-bold text-gray-500 dark:text-gray-400">{{ __('app.BuildingType') }} :</span>
+                <span class="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">
+                @if ($building->buildingtype ==1)
+                                    سكني
                                 @endif
-                            </td>
-                            <td class="py-3 px-6 text-center">{{ $building->created_at }}</td>
-                            <td class="py-3 px-6 text-center">
-                                <div class="flex item-center justify-center">
-                                    <a href="{{ route('admin.buildings.show', $building->id) }}" class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer">
-                                        <i class="fas fa-eye"></i>
-                                    </a>
-                                    <button class="w-4 mr-2 transform hover:text-yellow-500 hover:scale-110 cursor-pointer outline-none focus:outline-none" onclick="Livewire.emit('openEditBuildingModal', {{ $building->id }})">
-                                        <i class="fas fa-pen"></i>
-                                    </button>
-                                    <button class="w-4 mr-2 transform hover:text-red-500 hover:scale-110 cursor-pointer outline-none focus:outline-none" onclick="deleteBuilding({{ $building->id }})">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                                @if ($building->buildingtype ==2)
+                                    تجاري
+                                @endif
+                                @if ($building->buildingtype ==3)
+                                    أرض
+                                @endif
+                </span>
+            </li>
+            <li class="flex space-x-3">
+                <!-- Icon -->
+                <span class="text-base font-bold leading-bold text-gray-500 dark:text-gray-400">{{ __('app.Floors') }} :</span>
+                <span class="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">{{ $building->apartments_max_floor }}</span>
+                
+            </li>
+            <li class="flex space-x-3">
+                <!-- Icon -->
+                <span class="text-base font-bold leading-bold text-gray-500 dark:text-gray-400">{{ __('app.Total Apartments') }} :</span>
+                <span class="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">{{ $building->apartments_count }}</span>
+            </li>
+            <!-- <li class="flex space-x-3">
+                <span class="text-base font-bold leading-bold text-gray-500 dark:text-gray-400">{{ __('app.Has Basement') }}</span>
+                <span class="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">
+                @if ($building->apartments->where('floor', 0)->count())
+                              <i class="fas fa-check fa-lg text-green-600"></i>
+                          @else
+                              <i class="fas fa-times fa-lg text-red-600"></i>
+                          @endif
+                </span>
+            </li> -->
+            <li class="flex space-x-3">
+                <!-- Icon -->
+                <span class="text-base font-bold leading-bold text-gray-500 dark:text-gray-400">{{ __('app.Created At') }} :</span>
+                <span class="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">{{ $building->created_at }}</span>
+            </li>
+           
+        </ul>
+        <div class="flex items-center justify-center">
+                              <a href="{{ route('admin.buildings.show', $building->id) }}" class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110 cursor-pointer">
+                                  <i class="fas fa-eye"></i>
+                              </a>
+                              <button class="w-4 mr-2 transform hover:text-yellow-500 hover:scale-110 cursor-pointer outline-none focus:outline-none" onclick="Livewire.emit('openEditBuildingModal', {{ $building->id }})">
+                                  <i class="fas fa-pen"></i>
+                              </button>
+                              <button class="w-4 mr-2 transform hover:text-red-500 hover:scale-110 cursor-pointer outline-none focus:outline-none" onclick="deleteBuilding({{ $building->id }})">
+                                  <i class="fas fa-trash"></i>
+                              </button>
+                          </div>
+    </div>
+</div>
+
                     @empty
                         <tr><td class="py-3 px-6 text-center text-lg" colspan="20">{{ __('app.Nothing found') }}</td></tr>
                     @endforelse
-                </tbody>
-            </table>
-        </div>
+                    </div>
+                </div>
 
         <div class="p-5">
             {{ $buildings->links() }}
